@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+    photos_manager_api_db:
+        image: postgres:13.6
+        environment:
+            POSTGRES_PASSWORD: "admin123"
+            POSTGRES_USER: "admin321"
+            POSTGRES_DB: "photos_manager_api"
+        ports:
+            - "5432:5432"
+    photos_manager_api_backend:
+        image: pm_backend
+        build: .
+        command: ${DOCKER_CMD}
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        depends_on:
+            - photos_manager_api_db
