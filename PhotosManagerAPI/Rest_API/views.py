@@ -19,4 +19,3 @@ class PhotoRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = PhotoSerializer
     lookup_field = 'uuid'
-
