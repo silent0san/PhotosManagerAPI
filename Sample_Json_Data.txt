@@ -1,0 +1,15 @@
+[{
+    "albumId": 998,
+    "title": "Import From Json Example 1",
+    "url": "https://via.placeholder.com/600/92c952"
+},
+{
+    "albumId": 999,
+    "title": "Import From Json Example 2",
+    "url": "https://via.placeholder.com/600/92c952"
+},
+{
+    "albumId": 1000,
+    "title": "Import From Json Example 3",
+    "url": "https://via.placeholder.com/600/92c952"
+}]
