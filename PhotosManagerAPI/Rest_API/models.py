@@ -8,21 +8,22 @@ from PIL import Image
 class Photo(models.Model):
     uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False)
     title = models.CharField(max_length=200)
-    albumID = models.PositiveIntegerField(blank=False, null=False)
+    albumId = models.PositiveIntegerField(blank=False, null=False)
     width = models.PositiveIntegerField()
     height = models.PositiveIntegerField()
     dominant_color = models.CharField(max_length=6)
-    local_url = models.URLField(blank=False, null=False)
+    url = models.CharField(max_length=200)
 
     def __str__(self):
         return self.title
 
     def _get_image_size(self):
-        response = requests.get(self.local_url + ".png")
-        return Image.open(self.local_url).size
+        expanded_url = str(self.url) + ".png"
+        response = requests.get(expanded_url)
+        return Image.open(BytesIO(response.content)).size
 
     def _get_dominant_color(self):
-        expanded_url = self.local_url + ".png"
+        expanded_url = str(self.url) + ".png"
         image = requests.get(expanded_url)
         original_image = Image.open(BytesIO(image.content))
         color_palette = original_image.getpalette()  # get palette as [r,g,b,r,g,b,...]
