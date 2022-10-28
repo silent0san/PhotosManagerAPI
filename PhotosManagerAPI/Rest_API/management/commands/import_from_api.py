@@ -4,8 +4,11 @@ import requests
 
 
 class Command(BaseCommand):
-    def handle(self, *args, **options):
-        api_url = 'https://jsonplaceholder.typicode.com/photos'
+    def add_arguments(self, parser):
+        parser.add_argument('api_url', type=str, help='Insert API url.')
+
+    def handle(self, *args, **kwargs):
+        api_url = kwargs['api_url']
 
         json_data = requests.get(api_url).json()
         serializer = WriteOnlySerializer(data=json_data, many=True)
