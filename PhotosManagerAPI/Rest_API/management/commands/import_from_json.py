@@ -14,3 +14,4 @@ class Command(BaseCommand):
             serializer = WriteOnlySerializer(data=request, many=True)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
+                return "Import from JSON file finished successfully."
